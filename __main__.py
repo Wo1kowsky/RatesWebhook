@@ -3,5 +3,6 @@ import datetime
 import json
 
 def get_rate(params):
+    type_of_currency = params.get("currency")
     today_date = datetime.date.today()
-    return json.dumps({'rate' : str(pycbrf.ExchangeRates(today_date)['USD'].rate)})
+    return ({'rate' : str(pycbrf.ExchangeRates(today_date)[type_of_currency].rate)})
