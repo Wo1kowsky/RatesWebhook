@@ -1,0 +1,8 @@
+virtualenv virtualenv
+source virtualenv/bin/activate
+pip3 install pycbrf
+zip -r rates.zip virtualenv __main__.py
+ibmcloud login --sso
+ibmcloud target --cf
+ibmcloud fn action create Sample /Users/maximvolkov/Documents/Projects/rates/rates.zip  --kind python:3.7 --main get_rate
+ibmcloud fn action invoke Sample --result --param currency EUR
